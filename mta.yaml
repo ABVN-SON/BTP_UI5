@@ -1,0 +1,57 @@
+_schema-version: 3.3.0
+ID: BTP_Project
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: BTP_Project-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: EmployeeApp-db
+      - name: hdi_con
+      - name: BTP_Project-db
+
+  - name: EmployeeApp-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: EmployeeApp-db
+      - name: hdi_con
+      - name: BTP_Project-db
+
+resources:
+  - name: EmployeeApp-db
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+
+  - name: hdi_con
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: BTP_Project-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
