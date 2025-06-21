@@ -1,0 +1,14 @@
+<mvc:View
+    controllerName="myBTProject.controller.EmployeeInfo"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+>
+  <m:Page >
+    <m:customHeader>
+      <core:Fragment fragmentName="myBTProject.view.fragment.Header" type = "XML" />
+    </m:customHeader>
+  
+  </m:Page>
+</mvc:View>

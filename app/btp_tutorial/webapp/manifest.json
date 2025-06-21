@@ -1,0 +1,91 @@
+{
+    "_version": "1.40.0",
+    "sap.app": {
+        "id": "myBTProject",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}"
+    } ,
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+          "minUI5Version": "1.117.0",
+          "libs": {
+            "sap.m": {},
+            "sap.ui.core": {},
+            "sap.f": {},
+            "sap.suite.ui.generic.template": {},
+            "sap.ui.comp": {},
+            "sap.ui.generic.app": {},
+            "sap.ui.table": {},
+            "sap.ushell": {}
+          }
+        },
+        "resources": {
+            "css": [
+              {
+                "uri": "css/style.css"
+              }
+            ]
+          },
+        "models": {
+            "i18n": {
+              "type": "sap.ui.model.resource.ResourceModel",
+              "settings": {
+                "bundleName": "myBTProject.i18n.i18n"
+              }
+            } , 
+            "": {
+              "dataSource": "mainService",
+              "preload": true,
+              "settings": {
+                "operationMode": "Server",
+                "autoExpandSelect": true,
+                "earlyRequests": true
+              }
+            }
+            
+        },
+        
+        "routing": {
+            "config": {
+              "routerClass": "sap.m.routing.Router",
+              "viewType": "XML",
+              "async": true,
+              "type": "View",
+              "path": "myBTProject.view",
+              "controlAggregation": "pages",
+              "controlId": "app",
+              "clearControlAggregation": false
+            }, 
+            "routes" : [ 
+                {
+                    "name": "EmployeeInfo", 
+                    "pattern": "" , 
+                    "target" : [
+                        "EmployeeInfo"
+                    ]
+                   }
+            ],
+            "targets": { 
+                "EmployeeInfo": {
+                    "viewType": "XML" , 
+                    "transition":"slide",
+                    "viewId": "EmployeeInfo",
+                    "viewName": "EmployeeInfo"
+                    
+                }
+            }
+        } , 
+        "rootView": {
+            "viewName": "myBTProject.view.App" , 
+            "type": "XML" , 
+             "async": true , 
+             "id": "app"
+        }
+
+}
+}

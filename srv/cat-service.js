@@ -2,15 +2,17 @@ const cds = require("@sap/cds");
 const condition = require("./condition")
 
 class CatalogService extends cds.ApplicationService {
-    init() {
+    async init() {
+        const {Employees, Departments, SF_Candidates , SF_Employment , SF_EmpTer } = this.entities ;
+        const sf_emp = await cds.connect.to("sf_emp") ; 
+        const sf_emp_ter = await cds.connect.to("sf_emp_ter");
+        const sf_can = await cds.connect.to("sf_can");
 
-
-        const {Employees, Departments} = this.entities
         this.on([
             'NEW', 'CREATE', 'UPDATE'
         ], Employees, async (req) => {
-
-            if (condition.compareDate(req.data) ) {
+            
+            if (condition.compareDate(req.data)) {
                 return req.error(405, "Not allow Date of birth >= Hire date");
             }
             if (! condition.hasnonumber(req.data.firstName) || ! condition.hasnonumber(req.data.lastName)) {
@@ -26,25 +28,46 @@ class CatalogService extends cds.ApplicationService {
             return req.data
         });
 
-        this.after( 'READ' , Employees, (data) => {
-            // Process the data after reading Employees
-            console.log("Employees data read:", data); 
+        this.after('READ', Employees, (data) => { // Process the data after reading Employees
+            console.log("Employees data read:", data);
 
-            return {
-                'name' :'son' , 
-                 'tuoi' : 18  
-            }
-        }
-        );
-        this.on( 'READ' , Employees , async (req) => {
-          
-            return{
-                'name' :'son' , 
-                 'tuoi' : 18  
-            };
-        }
-        )
+            return {'name': 'son', 'tuoi': 18}
+        });
 
+        this.on('READ', Employees, async (req) => {
+
+            return {'name': 'son', 'tuoi': 18};
+        })
+
+        this.on('READ', SF_Candidates ,async (req) => {
+           const a = SELECT.from(req.query.SELECT.from).limit(10) ; 
+           const result = await sf_can.tx(  req  ).send( { query : a } )
+           return result
+    
+        })
+
+        this.on('READ', SF_Employment, async (req) => {
+            const a = SELECT.from(req.query.SELECT.from).limit(10) ; 
+            const result = await sf_emp.tx(  req  ).send( { query : a } )
+            return result
+    
+        })
+
+        this.on('READ', SF_EmpTer,async (req) => {
+            const a = SELECT.from(req.query.SELECT.from).limit(10) ; 
+            const result = await sf_emp.tx(  req  ).send( { query : a } )
+            return result
+    
+        })
+
+        this.on('CREATE', SF_Candidates,async (req) => {
+            // const a = INSERT.into( SF_Candidates ).entries(req.data)
+            // const result = await sf_can.run( a ) ; 
+            const b = SELECT.from( SF_Candidates ).where({primaryEmail:"songuyen@email.com"}); 
+            const result1 = await sf_emp.tx(  req  ).send( { query : b } )
+            return result1
+        })
+        
 
     }
 }

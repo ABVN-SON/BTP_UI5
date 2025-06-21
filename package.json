@@ -11,6 +11,7 @@
     "@sap-cloud-sdk/http-client": "^4.0.2",
     "@sap-cloud-sdk/resilience": "^4.0.2",
     "@sap/cds": "^8",
+    "@ui5/cli": "^4.0.19",
     "express": "^4",
     "mta": "^1.0.8"
   },
@@ -25,6 +26,39 @@
   "cds": {
     "sql": {
       "native_hana_associations": false
+    },
+    "requires": {
+      "auth": {
+        "kind": "mocked"
+      },
+      "sf_emp": {
+        "kind": "odata-v2",
+        "model": "srv/external/sf_emp",
+        "destinations": true,
+        "[development]": {
+          "credentials": {
+            "destination": "SF_DES"
+          }
+        }
+      },
+      "sf_can": {
+        "kind": "odata-v2",
+        "model": "srv/external/sf_can",
+        "[development]": {
+          "credentials": {
+            "destination": "SF_DES"
+          }
+        }
+      },
+      "sf_emp_ter": {
+        "kind": "odata-v2",
+        "model": "srv/external/sf_emp_ter",
+        "[development]": {
+          "credentials": {
+            "destination": "SF_DES"
+          }
+        }
+      }
     }
   }
 }
