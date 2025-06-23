@@ -1,0 +1,219 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:unified="sap.ui.unified"
+>
+    <VBox class="sapUiMediumMarginBottom">
+        <HBox justifyContent="SpaceBetween">
+            <FlexBox
+                height="20%"
+                displayInline="true"
+                justifyContent="Center"
+                width="200px"
+                class="myFlexBox"
+            >
+                <Text
+                    text="{i18n>EmployeeInformation}"
+                    class="myInformationText"
+                />
+            </FlexBox>
+            <FlexBox
+                height="20%"
+                justifyContent="Center"
+                width="100px"
+            >
+                <core:Icon
+                    id="uploadIcon"
+                    src="sap-icon://person-placeholder"
+                    size="30px"
+                    class="myIcon"
+                    press="onUploadImagePress"
+                    width="50px"
+                    visible="true"
+                />
+                   <Image
+                    id="uploadedImage"
+                    src="sap-icon://person-placeholder"
+                    class="myIcon"
+                    visible="false"
+                    press="onUploadImagePress"
+                    width="50px"
+                />
+            </FlexBox>
+        </HBox>
+    </VBox>
+    <!--End Employee infomation text -->
+
+    <VBox width="100%">
+        <!--Start Input Name  -->
+        <HBox
+            class="sapUiSmallMargin "
+            alignContent="Center"
+        >
+            <Label
+                text="{i18n>InputName}"
+                class="sapUiTinyMargin minWith"
+                labelFor="id.InputName"
+                wrapping="true"
+            />
+            <Input
+                id="id.InputName"
+                value="{InputForm>Certificates/Certificate}"
+            />
+        </HBox>
+        <!--End Input Name  -->
+        <HBox
+            class="sapUiSmallMargin "
+            alignContent="Center"
+        >
+            <!--Start Input Gender  -->
+            <Label
+                class="sapUiTinyMargin minWith"
+                text="{i18n>Gender}"
+                labelFor="id.Select1"
+                wrapping="true"
+            />
+            <Select id="id.Select">
+                <core:Item
+                    key="MA"
+                    text="Male"
+                />
+                <core:Item
+                    key="FM"
+                    text="Female"
+                />
+                <core:Item
+                    key="OT"
+                    text="Other"
+                />
+            </Select>
+
+            <FlexBox class="myFlexBoxSpace" />
+            <!--End Input Gender  -->
+            <!--Start Input Date of Birth  -->
+            <Label
+                class="sapUiTinyMargin minWith2"
+                text="{i18n>DateOfBirth}"
+                labelFor="id.DP1"
+                wrapping="true"
+            />
+            <DatePicker
+                id="id.DP1"
+                placeholder="Enter Date"
+                class="sapUiSmallMarginBottom"
+            />
+            <!--End Input Date of Birth  -->
+        </HBox>
+    </VBox>
+    <!--Space-->
+    <HBox height="100px" />
+
+    <VBox width="100%">
+        <HBox
+            class="sapUiSmallMargin "
+            alignContent="Center"
+        >
+            <Label
+                text="{i18n>Department}"
+                class="sapUiTinyMargin minWith"
+                labelFor="id.SelectDepartment"
+                wrapping="true"
+            />
+            <Select id="id.SelectDepartment">
+                <core:Item
+                    key="RDC"
+                    text="RDC"
+                />
+                <core:Item
+                    key="IAS"
+                    text="IAS"
+                />
+            </Select>
+            <FlexBox class="myFlexBoxSpace" />
+            <Label
+                class="sapUiTinyMargin minWith2"
+                text="{i18n>WorkingFrom}"
+                labelFor="id.DP2"
+                wrapping="true"
+            />
+            <DatePicker
+                id="id.DP2"
+                placeholder="Enter Date"
+                class="sapUiSmallMarginBottom"
+            />
+        </HBox>
+
+        <HBox
+            class="sapUiSmallMargin "
+            alignContent="Center"
+        >
+            <Label
+                text="{i18n>Department}"
+                class="sapUiTinyMargin minWith"
+                labelFor="id.SelectLevel"
+                wrapping="true"
+            />
+            <Select id="id.SelectLevel">
+                <core:Item
+                    key="JR"
+                    text="Junior"
+                />
+                <core:Item
+                    key="MD"
+                    text="Midle"
+                />
+                <core:Item
+                    key="SR"
+                    text="Senior"
+                />
+            </Select>
+            <FlexBox class="myFlexBoxSpace" />
+            <Label
+                class="sapUiTinyMargin minWith2"
+                text="{i18n>Email}"
+                labelFor="id.Email"
+                wrapping="true"
+            />
+            <Input id="id.Email" />
+        </HBox>
+    </VBox>
+    <!--Space-->
+    <HBox height="100px" />
+    <VBox width="100%">
+        <!--Table Certificate. -->
+        <Table
+            id="id.CerTable"
+            items="{InputForm>/Certificates}"
+        >
+            <columns>
+                <Column id="id.CertificateC" />
+            </columns>
+            <items>
+                <ColumnListItem id="id.ColumnListItem">
+                    <cells>
+                        <HBox alignContent="Center">
+                            <Label
+                                text="{i18n>Certificate}"
+                                class="minWith2 sapUiTinyMargin"
+                            />
+                            <Input
+                                id="id.InputCertificate"
+                                value="{InputForm>Certificate}"
+                                class=""
+                            />
+                            <Button
+                                id="id.AddButton"
+                                type="Transparent"
+                                icon="sap-icon://add"
+                                press="onAddCer"
+                            />
+                        </HBox>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </VBox>
+</core:FragmentDefinition>

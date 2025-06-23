@@ -68,9 +68,23 @@
                     "target" : [
                         "EmployeeInfo"
                     ]
-                   }
+                   },
+                  {
+                    "name" :"EmployeeList" ,
+                    "pattern" :"EmployeeList" , 
+                    "target" : [
+                      "EmployeeList"
+                    ]
+                  } 
             ],
             "targets": { 
+              "EmployeeList": {
+                "viewType": "XML" , 
+                "transition":"slide",
+                "viewId": "EmployeeList",
+                "viewName": "EmployeeList" 
+                
+            } , 
                 "EmployeeInfo": {
                     "viewType": "XML" , 
                     "transition":"slide",
@@ -78,6 +92,7 @@
                     "viewName": "EmployeeInfo"
                     
                 }
+             
             }
         } , 
         "rootView": {
