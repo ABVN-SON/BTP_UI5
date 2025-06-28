@@ -29,7 +29,19 @@
     },
     "requires": {
       "auth": {
-        "kind": "mocked"
+        "kind": "mocked",
+        "users": {
+          "son" : {
+            "roles": ["admin",
+                      "viewer" ] 
+          },
+          "bob":{
+            "roles": ["viewer"]
+          },
+          "nguyencaoson8112k@gmail.com":{
+            "roles": ["viewer","admin"]
+          }
+        }
       },
       "sf_emp": {
         "kind": "odata-v2",

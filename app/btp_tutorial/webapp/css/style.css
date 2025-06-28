@@ -4,7 +4,12 @@
 }
 
 .myPanel { 
-  justify-content: center;
+  justify-content: center ;
+  width: 20%;
+  padding-left: auto;
+  padding-right: auto;
+  height: fit-content;
+  
 }
 .myInformationText { 
   font-family: Roboto ;
@@ -65,4 +70,17 @@ gap: 2%;
 
 .minWith2{
   min-width: 90px ; 
+}
+
+.myButton {
+    color: rgb(241, 252, 253);
+}
+
+.customWidth{ 
+  width: 100%;
+  align-items: center;
+}
+
+.myFooter{ 
+
 }

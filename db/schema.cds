@@ -12,10 +12,16 @@ entity Employees : cuid, managed {
     age : Integer; 
     position: String;
     department: Association to Departments;
-}
+    role : Association to Roles ; 
+ }
  
 entity Departments : cuid, managed {
     name: String;
     location : String;
 }
 
+entity Roles : cuid ,  managed {
+    name : String(50) ;
+    baseSalary : Int16
+
+}

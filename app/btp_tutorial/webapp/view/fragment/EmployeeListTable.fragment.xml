@@ -7,18 +7,19 @@
             id="employeeTable"
             items="{EmployeeList>/EmployeeTable}"
             inset="false"
-            fixedLayout="false"
+            fixedLayout="true"
             class="sapUiResponsiveMargin"
             width="100%">
 
             <!-- Cột tiêu đề -->
             <columns>
-                <Column><Text text="{i18n>Department}"/></Column>
                 <Column><Text text="{i18n>InputName}"/></Column>
+                <Column><Text text="{i18n>Department}"/></Column>
                 <Column><Text text="{i18n>Email}"/></Column>
                 <Column><Text text="{i18n>Level}"/></Column>
-                <Column><Text text="{i18n>Gender}"/></Column>
-                <Column><Text text="{i18n>WorkingFrom}"/></Column>
+                <!-- <Column><Text text="{i18n>Gender}"/></Column>
+                 <Column><Text text="{i18n>DateOfBirth}" /></Column>
+                <Column><Text text="{i18n>WorkingFrom}"/></Column> -->
                 <Column><Text text=""/></Column>
                
             </columns>
@@ -27,14 +28,15 @@
             <items>
                 <ColumnListItem>
                     <cells>
-                        <Text text="{EmployeeList>Department}" />
+                      
                         <Text text="{EmployeeList>Name}" />
+                        <Text text="{EmployeeList>Department}" />
                         <Text text="{EmployeeList>Email}" />
-                        <Text text="{EmployeeList>Level}" />
-                        <Text text="{EmployeeList>Gender}" />
+                        <Text text="{EmployeeList>RoleName}" />
+                        <!-- <Text text="{EmployeeList>Gender}" />
                         <Text text="{EmployeeList>DateOfBirth}" />
-                        <Text text="{EmployeeList>WorkingFrom}" />
-                        <Button text=">>" press="onPressDetail" />
+                        <Text text="{EmployeeList>WorkingFrom}" /> -->
+                        <Button  text=">>" press="onPressDetail" />
                     </cells>
                 </ColumnListItem>
             </items>

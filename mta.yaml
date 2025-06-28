@@ -25,7 +25,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: EmployeeApp-db
-      - name: hdi_con
+      - name: BTP_Project-destination
       - name: BTP_Project-db
 
   - name: EmployeeApp-db-deployer
@@ -35,7 +35,6 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: EmployeeApp-db
-      - name: hdi_con
       - name: BTP_Project-db
 
 resources:
@@ -45,11 +44,11 @@ resources:
       service: hana
       service-plan: hdi-shared
 
-  - name: hdi_con
-    type: org.cloudfoundry.existing-service
+  - name: BTP_Project-destination
+    type: org.cloudfoundry.managed-service
     parameters:
-      service: hana
-      service-plan: hdi-shared
+      service: destination
+      service-plan: lite
   - name: BTP_Project-db
     type: com.sap.xs.hdi-container
     parameters:

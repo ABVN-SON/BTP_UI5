@@ -12,7 +12,7 @@
         </HBox>
     </VBox>
     <!--End Employee List text --> 
-   <VBox width="100%"> 
+   <!-- <VBox width="100%"> 
    <HBox >
      <Label text="{i18n>Department}" class="sapUiTinyMargin minWith" labelFor="EmployeeList.SelectDepartment" wrapping="true"/>
      <Select forceSelection="true" id="idEmployeeList.SelectDepartment" change=".onChangeDepartment" items="{EmployeeList>/DepartmentTypes}" selectedItem="{EmployeeList>Key}" >
@@ -29,7 +29,7 @@
               
       </Select>
      </HBox>
-   </VBox>
+   </VBox> -->
 
    <FlexBox  height="50px"/>
     

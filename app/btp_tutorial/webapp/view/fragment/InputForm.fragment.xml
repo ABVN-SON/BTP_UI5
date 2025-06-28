@@ -61,7 +61,7 @@
             />
             <Input
                 id="id.InputName"
-                value="{InputForm>Certificates/Certificate}"
+                value="{InputForm>/Name}"
             />
         </HBox>
         <!--End Input Name  -->
@@ -69,41 +69,16 @@
             class="sapUiSmallMargin "
             alignContent="Center"
         >
-            <!--Start Input Gender  -->
-            <Label
+    <Label
+                text="{i18n>Salary}"
                 class="sapUiTinyMargin minWith"
-                text="{i18n>Gender}"
-                labelFor="id.Select1"
+                labelFor="id.InputSalary"
                 wrapping="true"
             />
-            <Select id="id.Select">
-                <core:Item
-                    key="MA"
-                    text="Male"
-                />
-                <core:Item
-                    key="FM"
-                    text="Female"
-                />
-                <core:Item
-                    key="OT"
-                    text="Other"
-                />
-            </Select>
-
-            <FlexBox class="myFlexBoxSpace" />
-            <!--End Input Gender  -->
-            <!--Start Input Date of Birth  -->
-            <Label
-                class="sapUiTinyMargin minWith2"
-                text="{i18n>DateOfBirth}"
-                labelFor="id.DP1"
-                wrapping="true"
-            />
-            <DatePicker
-                id="id.DP1"
-                placeholder="Enter Date"
-                class="sapUiSmallMarginBottom"
+            <Input
+                id="id.InputSalary"
+                value="{InputForm>/salary}"
+                editable="false"
             />
             <!--End Input Date of Birth  -->
         </HBox>
@@ -122,14 +97,10 @@
                 labelFor="id.SelectDepartment"
                 wrapping="true"
             />
-            <Select id="id.SelectDepartment">
+            <Select id="id.SelectDepartment" items="{InputForm>/Departments}" change="onChangeDepartment">
                 <core:Item
-                    key="RDC"
-                    text="RDC"
-                />
-                <core:Item
-                    key="IAS"
-                    text="IAS"
+                    key="{InputForm>ID}"
+                    text="{InputForm>name}"
                 />
             </Select>
             <FlexBox class="myFlexBoxSpace" />
@@ -143,6 +114,7 @@
                 id="id.DP2"
                 placeholder="Enter Date"
                 class="sapUiSmallMarginBottom"
+                value="{InputForm>/hireDate}"
             />
         </HBox>
 
@@ -151,23 +123,15 @@
             alignContent="Center"
         >
             <Label
-                text="{i18n>Department}"
+                text="{i18n>Level}"
                 class="sapUiTinyMargin minWith"
                 labelFor="id.SelectLevel"
                 wrapping="true"
             />
-            <Select id="id.SelectLevel">
+            <Select id="id.SelectLevel" items="{InputForm>/Roles}" change="onChangeRole">
                 <core:Item
-                    key="JR"
-                    text="Junior"
-                />
-                <core:Item
-                    key="MD"
-                    text="Midle"
-                />
-                <core:Item
-                    key="SR"
-                    text="Senior"
+                    key="{InputForm>ID}"
+                    text="{InputForm>name}"
                 />
             </Select>
             <FlexBox class="myFlexBoxSpace" />
@@ -175,45 +139,13 @@
                 class="sapUiTinyMargin minWith2"
                 text="{i18n>Email}"
                 labelFor="id.Email"
-                wrapping="true"
+                wrapping="false"
             />
-            <Input id="id.Email" />
+            <Input id="id.Email"  liveChange="onEmailChange" value="{InputForm>/email}"/>
         </HBox>
     </VBox>
     <!--Space-->
     <HBox height="100px" />
-    <VBox width="100%">
-        <!--Table Certificate. -->
-        <Table
-            id="id.CerTable"
-            items="{InputForm>/Certificates}"
-        >
-            <columns>
-                <Column id="id.CertificateC" />
-            </columns>
-            <items>
-                <ColumnListItem id="id.ColumnListItem">
-                    <cells>
-                        <HBox alignContent="Center">
-                            <Label
-                                text="{i18n>Certificate}"
-                                class="minWith2 sapUiTinyMargin"
-                            />
-                            <Input
-                                id="id.InputCertificate"
-                                value="{InputForm>Certificate}"
-                                class=""
-                            />
-                            <Button
-                                id="id.AddButton"
-                                type="Transparent"
-                                icon="sap-icon://add"
-                                press="onAddCer"
-                            />
-                        </HBox>
-                    </cells>
-                </ColumnListItem>
-            </items>
-        </Table>
-    </VBox>
+
+    
 </core:FragmentDefinition>
