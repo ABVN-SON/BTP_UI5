@@ -10,21 +10,21 @@
     "title": "{{appTitle}}",
     "dataSources": {
       "Employees": {
-        "uri": "/cat/Employees/",
+        "uri": "cat/Employees/",
         "type": "OData",
         "settings": {
           "odataVersion": "4.0"
         }
       },
       "Departments": {
-        "uri": "/cat/Departments/",
+        "uri": "cat/Departments/",
         "type": "OData",
         "settings": {
           "odataVersion": "4.0"
         }
       },
       "Roles": {
-        "uri": "/cat/Roles/",
+        "uri": "cat/Roles/",
         "type": "OData",
         "settings": {
           "odataVersion": "4.0"
@@ -152,4 +152,4 @@
           "id": "app"
         }
       }
-    }
+    }cf a

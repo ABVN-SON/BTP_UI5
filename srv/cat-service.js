@@ -4,9 +4,9 @@ const condition = require("./condition")
 class CatalogService extends cds.ApplicationService {
     async init() {
         const {Employees, Departments, Roles , SF_Candidates , SF_Employment , SF_EmpTer } = this.entities ;
-        const sf_emp = await cds.connect.to("sf_emp") ; 
-        const sf_emp_ter = await cds.connect.to("sf_emp_ter");
-        const sf_can = await cds.connect.to("sf_can");
+        // const sf_emp = await cds.connect.to("sf_emp") ; 
+        // const sf_emp_ter = await cds.connect.to("sf_emp_ter");
+        // const sf_can = await cds.connect.to("sf_can");
 
         this.on([
             'NEW', 'CREATE', 'UPDATE'
@@ -47,34 +47,34 @@ class CatalogService extends cds.ApplicationService {
             return a 
         })
 
-        this.on('READ', SF_Candidates ,async (req) => {
-           const a = SELECT.from(req.query.SELECT.from).limit(10) ; 
-           const result = await sf_can.tx(  req  ).send( { query : a } )
-           return result
+        // this.on('READ', SF_Candidates ,async (req) => {
+        //    const a = SELECT.from(req.query.SELECT.from).limit(10) ; 
+        //    const result = await sf_can.tx(  req  ).send( { query : a } )
+        //    return result
     
-        })
+        // })
 
-        this.on('READ', SF_Employment, async (req) => {
-            const a = SELECT.from(req.query.SELECT.from).limit(10) ; 
-            const result = await sf_emp.tx(  req  ).send( { query : a } )
-            return result
+        // this.on('READ', SF_Employment, async (req) => {
+        //     const a = SELECT.from(req.query.SELECT.from).limit(10) ; 
+        //     const result = await sf_emp.tx(  req  ).send( { query : a } )
+        //     return result
     
-        })
+        // })
 
-        this.on('READ', SF_EmpTer,async (req) => {
-            const a = SELECT.from(req.query.SELECT.from).limit(10) ; 
-            const result = await sf_emp.tx(  req  ).send( { query : a } )
-            return result
+        // this.on('READ', SF_EmpTer,async (req) => {
+        //     const a = SELECT.from(req.query.SELECT.from).limit(10) ; 
+        //     const result = await sf_emp.tx(  req  ).send( { query : a } )
+        //     return result
     
-        })
+        // })
 
-        this.on('CREATE', SF_Candidates,async (req) => {
-            // const a = INSERT.into( SF_Candidates ).entries(req.data)
-            // const result = await sf_can.run( a ) ; 
-            const b = SELECT.from( SF_Candidates ).where({primaryEmail:"songuyen@email.com"}); 
-            const result1 = await sf_emp.tx(  req  ).send( { query : b } )
-            return result1
-        }) 
+        // this.on('CREATE', SF_Candidates,async (req) => {
+        //     // const a = INSERT.into( SF_Candidates ).entries(req.data)
+        //     // const result = await sf_can.run( a ) ; 
+        //     const b = SELECT.from( SF_Candidates ).where({primaryEmail:"songuyen@email.com"}); 
+        //     const result1 = await sf_emp.tx(  req  ).send( { query : b } )
+        //     return result1
+        // }) 
 
 
         this.on('CaculateSalary' , async ({data:{id}})=>{

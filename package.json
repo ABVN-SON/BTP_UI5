@@ -13,7 +13,8 @@
     "@sap/cds": "^8",
     "@ui5/cli": "^4.0.19",
     "express": "^4",
-    "mta": "^1.0.8"
+    "mta": "^1.0.8",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.10.0",
@@ -31,44 +32,34 @@
       "auth": {
         "kind": "mocked",
         "users": {
-          "son" : {
-            "roles": ["admin",
-                      "viewer" ] 
+          "son": {
+            "roles": [
+              "admin",
+              "viewer"
+            ]
           },
-          "bob":{
-            "roles": ["viewer"]
+          "bob": {
+            "roles": [
+              "viewer"
+            ]
           },
-          "nguyencaoson8112k@gmail.com":{
-            "roles": ["viewer","admin"]
+          "nguyencaoson8112k@gmail.com": {
+            "roles": [
+              "viewer",
+              "admin"
+            ]
           }
         }
       },
-      "sf_emp": {
-        "kind": "odata-v2",
-        "model": "srv/external/sf_emp",
-        "destinations": true,
-        "[development]": {
-          "credentials": {
-            "destination": "SF_DES"
-          }
-        }
-      },
-      "sf_can": {
-        "kind": "odata-v2",
-        "model": "srv/external/sf_can",
-        "[development]": {
-          "credentials": {
-            "destination": "SF_DES"
-          }
-        }
-      },
-      "sf_emp_ter": {
-        "kind": "odata-v2",
-        "model": "srv/external/sf_emp_ter",
-        "[development]": {
-          "credentials": {
-            "destination": "SF_DES"
-          }
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
+        },
+        "db": {
+          "kind": "hana"
+        },
+        "approuter": {
+          "kind": "cloudfoundry"
         }
       }
     }

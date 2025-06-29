@@ -14,7 +14,19 @@ sap.ui.define([
             oRouter.getRoute("EmployeeInfo").attachPatternMatched(this._onObjectMatched, this);
         },
 
-        _onObjectMatched: function (oEvent) {
+        _onObjectMatched: async function (oEvent) {
+            // const sId = oEvent.getParameter("arguments").id;
+            // const initPath = "/EmployeeInfo('" + sId + "')";
+          
+            // this.getView().bindElement({
+            //   path: initPath,
+            //   events: {
+            //     change: this._onBindingChange.bind(this),
+            //     dataRequested: () => this.getView().setBusy(true),
+            //     dataReceived: () => this.getView().setBusy(false)
+            //   }
+            // });
+
             const ids = [
                 "id.InputName",
                 "id.InputSalary",
@@ -34,6 +46,7 @@ sap.ui.define([
                 this._setEditable(id)
             })
             this._onsetinit(sPath);
+        
         },
 
         onAddCer() {
@@ -44,8 +57,15 @@ sap.ui.define([
         },
 
         onNavEmployeeList() {
-            this.getOwnerComponent().getRouter().navTo("EmployeeList", {}, true)
-
+            // this.getOwnerComponent().getRouter().navTo("EmployeeList")
+            var oHistory = sap.ui.core.routing.History.getInstance();
+            var sPreviousHash = oHistory.getPreviousHash();
+          
+            if (sPreviousHash !== undefined) {
+              window.history.go(-1);
+            } else {
+              this.getOwnerComponent().getRouter().navTo("EmployeeList");
+            }
         },
 
         onNavtoInputForm() {
@@ -171,13 +191,14 @@ sap.ui.define([
         },
 
         _onsetinit(i) {
+            let oEmployeelist = this.getOwnerComponent().oEmployees.value
+            let oEmployees = [  oEmployeelist.find( ( id )=>id.ID === i ) ]
+            let oDepartments = this.getOwnerComponent().oDepartments.value
+            let oRoles = this.getOwnerComponent().oRoles.value
             if (i !== "new") {
-                let oEmployees = [this.getOwnerComponent().oEmployees.value[i]]
-                let oDepartments = this.getOwnerComponent().oDepartments.value
-                let oRoles = this.getOwnerComponent().oRoles.value
-
                 // let EmployeeTable = oEmployess.map
                 let Employees = oEmployees.map((Employee) => {
+                    console.log(Employee.ID)
                     return {
                         ID: Employee.ID,
                         Department: `${
@@ -200,6 +221,13 @@ sap.ui.define([
                 this.byId("id.SelectDepartment").setName(Employee.Department)
                 // set model\
                 this.Employee = Employee
+                const oEmployee = new JSONModel(Employee)
+                this.getView().setModel(oEmployee, "InputForm");
+            }
+            else { 
+                const Employee = { }
+                Employee.Departments = oDepartments ; 
+                Employee.Roles = oRoles ; 
                 const oEmployee = new JSONModel(Employee)
                 this.getView().setModel(oEmployee, "InputForm");
             }

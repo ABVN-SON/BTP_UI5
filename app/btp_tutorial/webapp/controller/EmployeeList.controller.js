@@ -79,9 +79,7 @@ sap.ui.define([
             console.log(oEvent);
             const id = oEvent.getSource().getId().charAt( oEvent.getSource().getId().length - 1 ) ;
             const oEmployee = this.getOwnerComponent().oEmployees.value ; 
-            this.getOwnerComponent().getRouter().navTo( "EmployeeInfo", {
-                EmployeePath : encodeURIComponent(oEmployee[ id ].ID)
-             } )
+            this.getOwnerComponent().getRouter().navTo(  "EmployeeInfo" ,{ EmployeePath : oEmployee[ id ].ID } )
         }
        
 

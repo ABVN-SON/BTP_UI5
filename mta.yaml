@@ -26,7 +26,8 @@ modules:
     requires:
       - name: EmployeeApp-db
       - name: BTP_Project-destination
-      - name: BTP_Project-db
+      - name: BTP_Project-auth
+
 
   - name: EmployeeApp-db-deployer
     type: hdb
@@ -35,7 +36,29 @@ modules:
       buildpack: nodejs_buildpack
     requires:
       - name: EmployeeApp-db
-      - name: BTP_Project-db
+
+
+  - name: BTP_Project
+    type: approuter.nodejs
+    path: app/router
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: BTP_Project-auth
+      - name: BTP_Project-destination
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
 
 resources:
   - name: EmployeeApp-db
@@ -49,8 +72,14 @@ resources:
     parameters:
       service: destination
       service-plan: lite
-  - name: BTP_Project-db
-    type: com.sap.xs.hdi-container
+
+  - name: BTP_Project-auth
+    type: org.cloudfoundry.managed-service
     parameters:
-      service: hana
-      service-plan: hdi-shared
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: BTP_Project-${org}-${space}
+        tenant-mode: dedicated
+
