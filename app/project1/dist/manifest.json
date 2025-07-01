@@ -1,0 +1,155 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "myBTProject",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.1",
+      "toolsId": "488de9ec-010f-453e-aaac-37db8ad034e2"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/cat/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "EmployeeApp-Display": {
+          "semanticObject": "EmployeeApp",
+          "action": "Display",
+          "title": "{{EmployeeApp-Display.flpTitle}}",
+          "subTitle": "{{EmployeeApp-Display.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.136.2",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "project1.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "myBTProject.view",
+        "async": true,
+        "viewPath": "myBTProject.view"
+      },
+      "routes": [
+        {
+          "name": "EmployeeInfo",
+          "pattern": "EmployeeInfo/{EmployeePath}",
+          "target": [
+            "EmployeeInfo"
+          ]
+        },
+        {
+          "name": "EmployeeList",
+          "pattern": "",
+          "target": [
+            "EmployeeList"
+          ]
+        },
+        {
+          "pattern": "EmployeeInfo/new",
+          "name": "CreateEmployee",
+          "target": "EmployeeInfo"
+        }
+      ],
+      "targets": {
+        "EmployeeList": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "EmployeeList",
+          "viewName": "EmployeeList"
+        },
+        "EmployeeInfo": {
+          "viewType": "XML",
+          "transition": "slide",
+          "viewId": "EmployeeInfo",
+          "viewName": "EmployeeInfo"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "myBTProject.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "BTP_Project"
+  }
+}

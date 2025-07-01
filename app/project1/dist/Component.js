@@ -1,0 +1,2 @@
+sap.ui.define(["sap/ui/core/UIComponent","sap/ui/model/json/JSONModel","myBTProject/model/Models"],function(t,e,i){"use strict";return t.extend("myBTProject.Component",{metadata:{manifest:"json"},init:async function(){t.prototype.init.apply(this,arguments);let e=await i.getEmployeeList();this.oEmployees=e;let o=await i.getDepartMents();this.oDepartments=o;let s=await i.getRoles();this.oRoles=s;let a=await i.getAuthorization();this.oAuth=a;this.getRouter().initialize()}})});
+//# sourceMappingURL=Component.js.map

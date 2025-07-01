@@ -1,0 +1,19 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+>
+  <Bar>
+   <contentLeft>
+    <Text text="{i18n>CompanyName}" ></Text>
+   </contentLeft>
+   <contentRight> 
+   <Button  text="{i18n>Inputform}" press=".onNavtoInputForm"   >
+   </Button>
+   <Button text="{i18n>EmployeeList}" press=".onNavEmployeeList" >
+   </Button>
+   </contentRight>
+   </Bar>
+</core:FragmentDefinition>

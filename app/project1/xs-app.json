@@ -1,5 +1,5 @@
 {
-  "welcomeFile": "/myBTProject/index.html",
+  "welcomeFile": "/index.html",
   "authenticationMethod": "route",
   "routes": [
     {

@@ -1,0 +1,151 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:unified="sap.ui.unified"
+>
+    <VBox class="sapUiMediumMarginBottom">
+        <HBox justifyContent="SpaceBetween">
+            <FlexBox
+                height="20%"
+                displayInline="true"
+                justifyContent="Center"
+                width="200px"
+                class="myFlexBox"
+            >
+                <Text
+                    text="{i18n>EmployeeInformation}"
+                    class="myInformationText"
+                />
+            </FlexBox>
+            <FlexBox
+                height="20%"
+                justifyContent="Center"
+                width="100px"
+            >
+                <core:Icon
+                    id="uploadIcon"
+                    src="sap-icon://person-placeholder"
+                    size="30px"
+                    class="myIcon"
+                    press="onUploadImagePress"
+                    width="50px"
+                    visible="true"
+                />
+                   <Image
+                    id="uploadedImage"
+                    src="sap-icon://person-placeholder"
+                    class="myIcon"
+                    visible="false"
+                    press="onUploadImagePress"
+                    width="50px"
+                />
+            </FlexBox>
+        </HBox>
+    </VBox>
+    <!--End Employee infomation text -->
+
+    <VBox width="100%">
+        <!--Start Input Name  -->
+        <HBox
+            class="sapUiSmallMargin "
+            alignContent="Center"
+        >
+            <Label
+                text="{i18n>InputName}"
+                class="sapUiTinyMargin minWith"
+                labelFor="id.InputName"
+                wrapping="true"
+            />
+            <Input
+                id="id.InputName"
+                value="{InputForm>/Name}"
+            />
+        </HBox>
+        <!--End Input Name  -->
+        <HBox
+            class="sapUiSmallMargin "
+            alignContent="Center"
+        >
+    <Label
+                text="{i18n>Salary}"
+                class="sapUiTinyMargin minWith"
+                labelFor="id.InputSalary"
+                wrapping="true"
+            />
+            <Input
+                id="id.InputSalary"
+                value="{InputForm>/salary}"
+                editable="false"
+            />
+            <!--End Input Date of Birth  -->
+        </HBox>
+    </VBox>
+    <!--Space-->
+    <HBox height="100px" />
+
+    <VBox width="100%">
+        <HBox
+            class="sapUiSmallMargin "
+            alignContent="Center"
+        >
+            <Label
+                text="{i18n>Department}"
+                class="sapUiTinyMargin minWith"
+                labelFor="id.SelectDepartment"
+                wrapping="true"
+            />
+            <Select id="id.SelectDepartment" items="{InputForm>/Departments}" change="onChangeDepartment">
+                <core:Item
+                    key="{InputForm>ID}"
+                    text="{InputForm>name}"
+                />
+            </Select>
+            <FlexBox class="myFlexBoxSpace" />
+            <Label
+                class="sapUiTinyMargin minWith2"
+                text="{i18n>WorkingFrom}"
+                labelFor="id.DP2"
+                wrapping="true"
+            />
+            <DatePicker
+                id="id.DP2"
+                placeholder="Enter Date"
+                class="sapUiSmallMarginBottom"
+                value="{InputForm>/hireDate}"
+            />
+        </HBox>
+
+        <HBox
+            class="sapUiSmallMargin "
+            alignContent="Center"
+        >
+            <Label
+                text="{i18n>Level}"
+                class="sapUiTinyMargin minWith"
+                labelFor="id.SelectLevel"
+                wrapping="true"
+            />
+            <Select id="id.SelectLevel" items="{InputForm>/Roles}" change="onChangeRole">
+                <core:Item
+                    key="{InputForm>ID}"
+                    text="{InputForm>name}"
+                />
+            </Select>
+            <FlexBox class="myFlexBoxSpace" />
+            <Label
+                class="sapUiTinyMargin minWith2"
+                text="{i18n>Email}"
+                labelFor="id.Email"
+                wrapping="false"
+            />
+            <Input id="id.Email"  liveChange="onEmailChange" value="{InputForm>/email}"/>
+        </HBox>
+    </VBox>
+    <!--Space-->
+    <HBox height="100px" />
+
+    
+</core:FragmentDefinition>

@@ -1,0 +1,86 @@
+* { 
+    font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    ;
+  }
+  
+  .myPanel { 
+    justify-content: center ;
+    width: 20%;
+    padding-left: auto;
+    padding-right: auto;
+    height: fit-content;
+    
+  }
+  .myInformationText { 
+    font-family: Roboto ;
+    font-weight: 800;
+    
+    border: 0cm ; 
+    
+  }
+  
+  .myFlexBox {
+      border: 2px solid #21202004;       /* Viền màu đen, dày 2px */
+      padding: 10px;                /* Khoảng cách giữa text và viền */
+      display: inline-block;        /* Để box gọn theo chiều ngang của text */
+  
+      background-color: #f9f9f9
+  
+  }
+  
+  .myHbox { 
+     &-top { margin-top : 100px; } 
+     &-right{ margin-right:  100px;} 
+     &-bottom { margin-bottom: 100px;}
+  }
+  
+  .myIcon { 
+      color : white ; 
+      background-color: rgba(31, 178, 237, 0.802);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;              
+      display: flex;                   
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ccc;          
+      font-size: 20px;   
+  }
+  
+  .myInputSelection { 
+    margin-bottom: 30px;
+  
+  }
+  .myFlexBoxSpace {
+    width: 55%;
+  }
+  .myFlexBoxInput {
+     display: flex; 
+     gap: 20px; 
+     align-items: center;
+  }
+  .FlexWrap {
+  flex-wrap: wrap ;
+  gap: 2%; 
+  
+  }
+  .minWith{
+    min-width: 70px ; 
+  }
+  
+  .minWith2{
+    min-width: 90px ; 
+  }
+  
+  .myButton {
+      color: rgb(241, 252, 253);
+  }
+  
+  .customWidth{ 
+    width: 100%;
+    align-items: center;
+  }
+  
+  .myFooter{ 
+  
+  }
